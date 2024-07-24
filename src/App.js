@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Box } from '@mui/material';
 
 import './App.css';
 import { useNavigatorOnline } from './hooks/getOnLineStatus';
@@ -16,9 +17,9 @@ function App() {
 
   return (
     <div className="App">
-      <span>
-        {isConnected ? 'CONNECTED' : 'DISCONNECTED'}
-      </span>
+      <Box component={"section"} sx={{px: 2, bgcolor: isConnected ? 'wheat' : 'red', display: 'flex', padding: 2}}>
+        <span>{isConnected ? 'ONLINE' : 'OFFLINE'}</span>
+      </Box>
     </div>
   );
 }
