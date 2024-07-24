@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import './App.css';
+import { useNavigatorOnline } from './hooks/getOnLineStatus';
+import { connected, disconnected } from './feature/network/networkSlice';
 
 function App() {
+  const isOnline = useNavigatorOnline();
+  const dispatch = useDispatch();
+  const isConnected = useSelector((state) => state.network.networkStatus);
+
+  React.useEffect(() => {
+    isOnline ? dispatch(connected()) : dispatch(disconnected());    
+  }, [isOnline])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <span>
+        {isConnected ? 'CONNECTED' : 'DISCONNECTED'}
+      </span>
     </div>
   );
 }
