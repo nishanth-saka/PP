@@ -3,3 +3,20 @@ export const getLocationCoords = (successFunc) => {
         successFunc?.(position);
     })
 }
+
+export const getMicrophonePermission = async () => {    
+    if("MediaRecorder" in window){
+        try {
+            return await navigator.mediaDevices.getUserMedia({
+                audio: true,
+                video: false
+            })            
+        } catch (error) {
+            console.warn(`getMicrophonePermission: `, error)
+            return;
+        }
+    } else {
+        alert('Unable to start Camera/Audio!')
+        return;
+    }
+}

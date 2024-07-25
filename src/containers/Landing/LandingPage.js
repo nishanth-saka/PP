@@ -13,13 +13,10 @@ const LandingPage = () => {
     }
 
     return (
-        <Container>
-        <Box component="section" sx={{px: 2, display: 'flex', padding: 2}}>
-            <span>LANDING</span>            
-        </Box>
-        <Box component="section" sx={{px: 2, display: 'flex', padding: 2}}>            
-            <ButtonComponent title="REC" onButtonClick={onVideoRecClick} />
-        </Box>        
+        <Container>            
+            <Box component="section" sx={{px: 2, display: 'flex', padding: 2}}>            
+                <ButtonComponent title="REC" onButtonClick={onVideoRecClick} />
+            </Box>        
         </Container>
     )
 }
