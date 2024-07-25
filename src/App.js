@@ -15,6 +15,7 @@ import { getLocationCoords } from './helpers';
 import LandingPage from './containers/Landing/LandingPage';
 import VideoRecordingPage from './containers/Recording/VideoRecording/VideoRecordingPage';
 import ErrorPage from './containers/Error/ErrorPage';
+import { ROUTE_LANDING_PAGE, ROUTE_VIDEO_PAGE, ROUTE_ERROR_PAGE } from './constants';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,9 +46,9 @@ function App() {
       </Box>    
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/video" element={<VideoRecordingPage />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path={ROUTE_LANDING_PAGE} element={<LandingPage />} />
+          <Route path={ROUTE_VIDEO_PAGE} element={<VideoRecordingPage />} />
+          <Route path={ROUTE_ERROR_PAGE} element={<ErrorPage />} />
         </Routes>
       </Router>
     </React.Fragment>

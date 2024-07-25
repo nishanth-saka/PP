@@ -3,12 +3,13 @@ import { Box, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import ButtonComponent from '../../components/buttons/Button'
+import { ROUTE_VIDEO_PAGE } from "../../constants";
 
 const LandingPage = () => {
     let navigate = useNavigate();
 
     const onVideoRecClick = () => {
-        navigate("/err")
+        navigate(ROUTE_VIDEO_PAGE)
     }
 
     return (
@@ -17,8 +18,8 @@ const LandingPage = () => {
             <span>LANDING</span>            
         </Box>
         <Box component="section" sx={{px: 2, display: 'flex', padding: 2}}>            
-            <ButtonComponent onButtonClick={onVideoRecClick} />
-        </Box>
+            <ButtonComponent title="REC" onButtonClick={onVideoRecClick} />
+        </Box>        
         </Container>
     )
 }

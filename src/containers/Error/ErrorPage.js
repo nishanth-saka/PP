@@ -1,13 +1,15 @@
-import { Box, Container } from "@mui/material";
 import React from "react";
-
-import ButtonComponent from '../../components/buttons/Button'
+import { Box, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
+import { ROUTE_LANDING_PAGE } from "../../constants";
+import ButtonComponent from '../../components/buttons/Button'
+
 
 const ErrorPage = () => {
     let navigate = useNavigate();
     const goToHome = () => {        
-        navigate("/")
+        navigate(ROUTE_LANDING_PAGE)
     }
 
     return (
@@ -17,7 +19,7 @@ const ErrorPage = () => {
         </Box>
         <Box component="section" sx={{px: 2, display: 'flex', padding: 2}}>            
             <ButtonComponent title="HOME" onButtonClick={goToHome} />
-        </Box>
+        </Box>        
         </Container>
     )
 }
