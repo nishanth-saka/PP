@@ -4,7 +4,7 @@ const NETWORK_CONNECTED = true
 const NETWORK_DISCONNECTED = false
 
 const initialState = {
-    networkStatus : NETWORK_DISCONNECTED
+    networkStatus: NETWORK_DISCONNECTED
 }
 
 export const networkSlice = createSlice({
@@ -20,5 +20,5 @@ export const networkSlice = createSlice({
     },
 })
 
-export const {connected, disconnected} = networkSlice.actions
+export const { connected, disconnected } = networkSlice.actions
 export default networkSlice.reducer

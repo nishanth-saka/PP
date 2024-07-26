@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    currentPosition : {}
+    currentPosition: {}
 }
 
 export const locationSlice = createSlice({
@@ -14,5 +14,5 @@ export const locationSlice = createSlice({
     }
 })
 
-export const {setPosition} = locationSlice.actions
+export const { setPosition } = locationSlice.actions
 export default locationSlice.reducer;

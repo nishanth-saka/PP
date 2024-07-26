@@ -2,7 +2,7 @@ import React from "react"
 
 const getOnLineStatus = () => {
     return typeof navigator !== null && typeof navigator.onLine === 'boolean' ?
-    navigator.onLine : true
+        navigator.onLine : true
 }
 
 export const useNavigatorOnline = () => {
@@ -21,4 +21,4 @@ export const useNavigatorOnline = () => {
     }, [])
 
     return status;
- }
+}

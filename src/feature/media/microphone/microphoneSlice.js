@@ -9,7 +9,7 @@ import {
 } from '../../../constants'
 
 const initialState = {
-    microphoneStatus : MICROPHONE_LOADING    
+    microphoneStatus: MICROPHONE_LOADING
 }
 
 export const microphoneSlice = createSlice({
@@ -27,15 +27,15 @@ export const microphoneSlice = createSlice({
         },
         micDisconnected: (state) => {
             state.microphoneStatus = MICROPHONE_DISCONNECTED
-        }        
+        }
     }
 })
 
 export const {
-    micAvailable, 
-    micError, 
-    micConnected, 
-    micDisconnected,    
+    micAvailable,
+    micError,
+    micConnected,
+    micDisconnected,
 } = microphoneSlice.actions
 
 export default microphoneSlice.reducer

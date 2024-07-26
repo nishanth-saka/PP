@@ -5,11 +5,13 @@ import {
     CAMERA_AVAILABLE,
     CAMERA_ERROR,
     CAMERA_CONNECTED,
-    CAMERA_DISCONNECTED
+    CAMERA_DISCONNECTED,
+    CAMERA_RECORDING_STARTED,
+    CAMERA_RECORDING_STOPPED
 } from '../../../constants'
 
 const initialState = {
-    cameraStatus : CAMERA_LOADING    
+    cameraStatus: CAMERA_LOADING
 }
 
 export const cameraSlice = createSlice({
@@ -27,15 +29,23 @@ export const cameraSlice = createSlice({
         },
         camDisconnected: (state) => {
             state.cameraStatus = CAMERA_DISCONNECTED
-        }        
+        },
+        camRecStarted: (state) => {
+            state.cameraStatus = CAMERA_RECORDING_STARTED
+        },
+        camRecStopped: (state) => {
+            state.cameraStatus = CAMERA_RECORDING_STOPPED
+        }
     }
 })
 
 export const {
-    camAvailable, 
-    camError, 
-    camConnected, 
-    camDisconnected,    
+    camAvailable,
+    camError,
+    camConnected,
+    camDisconnected,
+    camRecStarted,
+    camRecStopped,
 } = cameraSlice.actions
 
 export default cameraSlice.reducer

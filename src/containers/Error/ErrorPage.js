@@ -8,18 +8,18 @@ import ButtonComponent from '../../components/buttons/Button'
 
 const ErrorPage = () => {
     let navigate = useNavigate();
-    const goToHome = () => {        
+    const goToHome = () => {
         navigate(ROUTE_LANDING_PAGE)
     }
 
     return (
         <Container>
-        <Box component="section" sx={{px: 2, display: 'flex', padding: 2}}>
-            <span>ERROR!</span>            
-        </Box>
-        <Box component="section" sx={{px: 2, display: 'flex', padding: 2}}>            
-            <ButtonComponent title={BUTTON_GO_HOME} onButtonClick={goToHome} />
-        </Box>        
+            <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
+                <span>ERROR!</span>
+            </Box>
+            <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
+                <ButtonComponent title={BUTTON_GO_HOME} onButtonClick={goToHome} />
+            </Box>
         </Container>
     )
 }

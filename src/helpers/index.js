@@ -4,13 +4,13 @@ export const getLocationCoords = (successFunc) => {
     })
 }
 
-export const getMicrophonePermission = async () => {    
-    if("MediaRecorder" in window){
+export const getMicrophonePermission = async () => {
+    if ("MediaRecorder" in window) {
         try {
             return await navigator.mediaDevices.getUserMedia({
                 audio: true,
                 video: false
-            })            
+            })
         } catch (error) {
             console.warn(`getMicrophonePermission: `, error)
             return;
@@ -21,13 +21,13 @@ export const getMicrophonePermission = async () => {
     }
 }
 
-export const getCameraPermission = async () => {    
-    if("MediaRecorder" in window){
+export const getCameraPermission = async () => {
+    if ("MediaRecorder" in window) {
         try {
             return await navigator.mediaDevices.getUserMedia({
                 audio: true,
                 video: true
-            })            
+            })
         } catch (error) {
             console.warn(`getCameraPermission: `, error)
             return;
