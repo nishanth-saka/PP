@@ -14,8 +14,14 @@ import { setPosition } from './feature/location/locationSlice';
 import { getLocationCoords } from './helpers';
 import LandingPage from './containers/Landing/LandingPage';
 import VideoRecordingPage from './containers/Recording/VideoRecording/VideoRecordingPage';
+import AudioRecordingPage from './containers/Recording/AudioRecording/AudioRecordingPage';
 import ErrorPage from './containers/Error/ErrorPage';
-import { ROUTE_LANDING_PAGE, ROUTE_VIDEO_PAGE, ROUTE_ERROR_PAGE } from './constants';
+import { 
+  ROUTE_LANDING_PAGE, 
+  ROUTE_VIDEO_PAGE, 
+  ROUTE_AUDIO_PAGE, 
+  ROUTE_ERROR_PAGE 
+} from './constants';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +54,7 @@ function App() {
         <Routes>
           <Route path={ROUTE_LANDING_PAGE} element={<LandingPage />} />
           <Route path={ROUTE_VIDEO_PAGE} element={<VideoRecordingPage />} />
+          <Route path={ROUTE_AUDIO_PAGE} element={<AudioRecordingPage />} />
           <Route path={ROUTE_ERROR_PAGE} element={<ErrorPage />} />
         </Routes>
       </Router>

@@ -3,29 +3,35 @@ import { Box, Container } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { getMicrophonePermission } from "../../../helpers";
-import { micConnected, micAvailable, setMicrophoneSteam, micDisconnected } from "../../../feature/media/microphone/microphoneSlice";
+import { getCameraPermission } from "../../../helpers";
+import { camConnected, camAvailable, camDisconnected } from "../../../feature/media/camera/cameraSlice";
 import ButtonComponent from "../../../components/buttons/Button";
-import { ROUTE_LANDING_PAGE, MICROPHONE_CONNECTED, MICROPHONE_LOADING } from "../../../constants";
+import { 
+    ROUTE_LANDING_PAGE, 
+    CAMERA_CONNECTED, 
+    BUTTON_GO_HOME,
+    BUTTON_VIDEO_REC_START,
+    BUTTON_VIDEO_REC_STOP,
+    BUTTON_VIDEO_PERMISSION
+} from "../../../constants";
 
 const VideoRecordingPage = () => {  
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [micStream, setMicStream] = React.useState();
-    // const mic_status = useSelector((state) => state);    
+    const [camStream, setCamStream] = React.useState();
 
-    const {microphoneStatus} = useSelector((state) => state.microphone)     
+    const {cameraStatus} = useSelector((state) => state.camera)     
 
-    const getMicPermission = () => {
-        getMicrophonePermission()
+    const getCamPermission = () => {
+        getCameraPermission()
         .then((stream) => {
             if(stream){
-                dispatch(micAvailable())
-                setMicStream(stream);
-                dispatch(micConnected())
+                dispatch(camAvailable())
+                setCamStream(stream);
+                dispatch(camConnected())
             } else {
-                dispatch(micDisconnected())
+                dispatch(camDisconnected())
             }
         })    
     }
@@ -34,22 +40,26 @@ const VideoRecordingPage = () => {
         navigate(ROUTE_LANDING_PAGE)
     }
     
-    function MicPermissionButton() {
-        return <ButtonComponent title="GET MIC PERMISSION" onButtonClick={getMicPermission} />
+    function CamPermissionButton() {
+        return <ButtonComponent title={BUTTON_VIDEO_PERMISSION} onButtonClick={getCamPermission} />
     }
 
-    function MicStartMicRecording() {
-        return <ButtonComponent title="START RECORDING" />
+    function CamStartRecording() {
+        return <ButtonComponent title={BUTTON_VIDEO_REC_START} />
+    }
+
+    function CamStopRecording() {
+        return <ButtonComponent title={BUTTON_VIDEO_REC_STOP} />
     }
 
     function GoToHomePage() {
-        return <ButtonComponent title="HOME" onButtonClick={goToHome} />
+        return <ButtonComponent title={BUTTON_GO_HOME} onButtonClick={goToHome} />
     }
 
     return (
         <Container>
             <Box component="section" sx={{px: 2, display: 'flex', padding: 2}}>
-                {microphoneStatus !== MICROPHONE_CONNECTED ? <MicStartMicRecording /> : <MicPermissionButton />}
+                {cameraStatus !== CAMERA_CONNECTED ? <CamPermissionButton /> : <CamStartRecording />}
             </Box>
             <Box component="section" sx={{px: 2, display: 'flex', padding: 2}}>
                 <GoToHomePage />

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 import {
     MICROPHONE_LOADING,
     MICROPHONE_AVAILABLE,

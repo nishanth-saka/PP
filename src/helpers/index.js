@@ -20,3 +20,20 @@ export const getMicrophonePermission = async () => {
         return;
     }
 }
+
+export const getCameraPermission = async () => {    
+    if("MediaRecorder" in window){
+        try {
+            return await navigator.mediaDevices.getUserMedia({
+                audio: true,
+                video: true
+            })            
+        } catch (error) {
+            console.warn(`getCameraPermission: `, error)
+            return;
+        }
+    } else {
+        alert('Unable to start Camera/Audio!')
+        return;
+    }
+}
