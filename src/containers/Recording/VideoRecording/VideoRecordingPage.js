@@ -10,7 +10,8 @@ import {
     camAvailable,
     camDisconnected,
     camRecStarted,
-    camRecStopped
+    camRecStopped,
+    camRecCompleted
 } from "../../../feature/media/camera/cameraSlice";
 import ButtonComponent from "../../../components/buttons/Button";
 import {
@@ -29,8 +30,8 @@ import VideoCameraComponent from "../../../components/camera/VideoCamera";
 const VideoRecordingPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { createRecording, openCamera, startRecording, stopRecording, downloadRecording } = useRecordWebcam()
-    const [camStream, setCamStream] = React.useState();
+    const { createRecording, openCamera, closeCamera, startRecording, stopRecording } = useRecordWebcam()
+    const [ , setCamStream] = React.useState();
 
     const { cameraStatus } = useSelector((state) => state.camera)
 
@@ -48,23 +49,27 @@ const VideoRecordingPage = () => {
     }
 
     const setCameraRecStarted = async () => {
-        console.warn('click');        
-        
         dispatch(camRecStarted())
 
         const recording = await createRecording()
-        console.warn('createRecording: ', recording);
 
         await openCamera(recording.id)
         await startRecording(recording.id)
         await new Promise((resolve) => setTimeout(resolve, CAMERA_RECORDING_DURATION_MS))
-        const recorded = await stopRecording(recording.id);
-
-        console.warn('setCameraRecStarted: ', recorded);
+        await stopRecording(recording.id)
+        await closeCamera(recording.id)   
+        
+        //COMPLETED
+        setCameraRecStopped();
+        setCameraRecCompleted();
     }
 
     const setCameraRecStopped = () => {
         dispatch(camRecStopped())
+    }
+
+    const setCameraRecCompleted = () => {
+        dispatch(camRecCompleted())
     }
 
     const goToHome = () => {

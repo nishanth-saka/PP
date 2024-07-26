@@ -7,7 +7,8 @@ import {
     CAMERA_CONNECTED,
     CAMERA_DISCONNECTED,
     CAMERA_RECORDING_STARTED,
-    CAMERA_RECORDING_STOPPED
+    CAMERA_RECORDING_STOPPED,
+    CAMERA_RECORDING_COMPLETED,
 } from '../../../constants'
 
 const initialState = {
@@ -35,7 +36,10 @@ export const cameraSlice = createSlice({
         },
         camRecStopped: (state) => {
             state.cameraStatus = CAMERA_RECORDING_STOPPED
-        }
+        },
+        camRecCompleted: (state) => {
+            state.cameraStatus = CAMERA_RECORDING_COMPLETED
+        },
     }
 })
 
@@ -46,6 +50,7 @@ export const {
     camDisconnected,
     camRecStarted,
     camRecStopped,
+    camRecCompleted,
 } = cameraSlice.actions
 
 export default cameraSlice.reducer
