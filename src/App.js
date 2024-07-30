@@ -15,17 +15,19 @@ import { getLocationCoords } from './helpers';
 import LandingPage from './containers/Landing/LandingPage';
 import VideoRecordingPage from './containers/Recording/VideoRecording/VideoRecordingPage';
 import AudioRecordingPage from './containers/Recording/AudioRecording/AudioRecordingPage';
+import GoogleAuthConsentPage from './containers/Auth/GoogleAuth/GoogleAuthPage';
 import ErrorPage from './containers/Error/ErrorPage';
 import {
   ROUTE_LANDING_PAGE,
   ROUTE_VIDEO_PAGE,
   ROUTE_AUDIO_PAGE,
-  ROUTE_ERROR_PAGE
+  ROUTE_ERROR_PAGE,
+  ROUTE_GOOGLE_AUTH_PAGE
 } from './constants';
 
 function App() {
   const dispatch = useDispatch();
-
+ 
   const isOnline = useNavigatorOnline();
   const isConnected = useSelector((state) => state.network.networkStatus);
 
@@ -57,6 +59,7 @@ function App() {
           <Route path={ROUTE_LANDING_PAGE} element={<LandingPage />} />
           <Route path={ROUTE_VIDEO_PAGE} element={<VideoRecordingPage />} />
           <Route path={ROUTE_AUDIO_PAGE} element={<AudioRecordingPage />} />
+          <Route path={ROUTE_GOOGLE_AUTH_PAGE} element={<GoogleAuthConsentPage />} />
           <Route path={ROUTE_ERROR_PAGE} element={<ErrorPage />} />
         </Routes>
       </Router>

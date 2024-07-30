@@ -1,6 +1,7 @@
 export const ROUTE_LANDING_PAGE = "/";
 export const ROUTE_VIDEO_PAGE = "/video";
 export const ROUTE_AUDIO_PAGE = "/audio";
+export const ROUTE_GOOGLE_AUTH_PAGE = "/google-auth";
 export const ROUTE_ERROR_PAGE = "*";
 
 export const MICROPHONE_LOADING = "MICROPHONE_LOADING";
@@ -28,3 +29,5 @@ export const BUTTON_AUDIO_REC_STOP = "STOP AUDIO REC"
 export const BUTTON_VIDEO_REC_START = "START VIDEO REC"
 export const BUTTON_VIDEO_REC_STOP = "STOP VIDEO REC"
 export const BUTTON_GO_HOME = "GO HOME"
+
+export const BUTTON_GOOGLE_AUTH_LOGIN = "CLICK TO LOGIN"
