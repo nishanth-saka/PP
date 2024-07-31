@@ -1,19 +1,34 @@
 import React from 'react'
-import {Box, Container} from "@mui/material"
+import { Box, Container } from "@mui/material"
 import { useNavigate } from 'react-router-dom'
 
 import ButtonComponent from '../../../components/buttons/Button'
-import { 
+import {
     BUTTON_GOOGLE_AUTH_LOGIN,
     BUTTON_GO_HOME,
     ROUTE_LANDING_PAGE
- } from '../../../constants'
+} from '../../../constants'
+import { useGetLoginLinkQuery } from '../../../api/auth/google/userApi'
 
 const GoogleAuthConsentPage = () => {
     const navigate = useNavigate();
+ 
+    const {
+        data,
+        isLoading,
+        isSuccess,
+        isError,
+        error
+    } = useGetLoginLinkQuery();
 
     const onAuthClick = () => {
-        navigate(ROUTE_LANDING_PAGE)
+        console.warn(
+            data,
+            isLoading,
+            isSuccess,
+            isError,
+            error
+        )
     }
 
     const goToHome = () => {
