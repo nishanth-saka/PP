@@ -29,15 +29,15 @@ const LandingPage = () => {
 
     return (
         <Container>
-            <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
+            {/* <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
                 <ButtonComponent title={BUTTON_AUDIO_REC} onButtonClick={onAudioRecClick} />
-            </Box>
+            </Box> */}
             <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
                 <ButtonComponent title={BUTTON_VIDEO_REC} onButtonClick={onVideoRecClick} />
             </Box>
-            <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
+            {/* <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
                 <ButtonComponent title={BUTTON_GOOGLE_AUTH_LOGIN} onButtonClick={onAuthClick} />
-            </Box>
+            </Box> */}
         </Container>
     )
 }

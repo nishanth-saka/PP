@@ -11,8 +11,7 @@ import {
 import { useGetLoginLinkQuery } from '../../../api/auth/google/userApi'
 
 const GoogleAuthConsentPage = () => {
-    const navigate = useNavigate();
- 
+    const navigate = useNavigate();    
     const {
         data,
         isLoading,
@@ -21,14 +20,16 @@ const GoogleAuthConsentPage = () => {
         error
     } = useGetLoginLinkQuery();
 
+    const redirectToLoginURL = (loginURL) => {
+        console.warn(`redirectToLoginURL:`, loginURL);
+        window.location.href = loginURL;
+    }
+
     const onAuthClick = () => {
-        console.warn(
-            data,
-            isLoading,
-            isSuccess,
-            isError,
-            error
-        )
+        console.warn(error);
+        if(error){
+            redirectToLoginURL(error?.data)
+        }
     }
 
     const goToHome = () => {

@@ -23,7 +23,8 @@ import {
     CAMERA_LOADING,
     CAMERA_DISCONNECTED,
     CAMERA_RECORDING_STARTED,
-    CAMERA_RECORDING_DURATION_MS
+    CAMERA_RECORDING_DURATION_MS,
+    BUTTON_VIDEO_UPLOAD
 } from "../../../constants";
 import VideoCameraComponent from "../../../components/camera/VideoCamera";
 
@@ -31,7 +32,7 @@ const VideoRecordingPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { createRecording, openCamera, closeCamera, startRecording, stopRecording } = useRecordWebcam()
-    const [ , setCamStream] = React.useState();
+    const [ streamRecorded, setCamStream] = React.useState();
 
     const { cameraStatus } = useSelector((state) => state.camera)
 
@@ -39,8 +40,7 @@ const VideoRecordingPage = () => {
         getCameraPermission()
             .then((stream) => {
                 if (stream) {
-                    dispatch(camAvailable())
-                    setCamStream(stream);
+                    dispatch(camAvailable())                    
                     dispatch(camConnected())
                 } else {
                     dispatch(camDisconnected())
@@ -56,9 +56,9 @@ const VideoRecordingPage = () => {
         await openCamera(recording.id)
         await startRecording(recording.id)
         await new Promise((resolve) => setTimeout(resolve, CAMERA_RECORDING_DURATION_MS))
-        await stopRecording(recording.id)
+        const recorded = await stopRecording(recording.id)
         await closeCamera(recording.id)   
-        
+        setCamStream(recorded);
         //COMPLETED
         setCameraRecStopped();
         setCameraRecCompleted();
@@ -88,8 +88,27 @@ const VideoRecordingPage = () => {
         return <ButtonComponent title={BUTTON_VIDEO_REC_STOP} onButtonClick={setCameraRecStopped} />
     }
 
+    function UploadVideoFunc() {
+        return <ButtonComponent title={BUTTON_VIDEO_UPLOAD} onButtonClick={uploadVideo} />
+    }
+
     function GoToHomePage() {
         return <ButtonComponent title={BUTTON_GO_HOME} onButtonClick={goToHome} />
+    }
+
+    const uploadVideo = async () => {
+        const formData = new FormData();
+        formData.append('file', streamRecorded.blob, 'recorded.webm');
+        formData.append('title', 'TITLE')
+        formData.append('description', 'DESCRIPTION')
+
+        const response = await fetch('http://localhost:1449/upload/youtube-channel', {
+            method: 'POST',
+            body: formData,
+        });
+
+        console.warn(formData)
+        console.warn(response);
     }
 
     return (
@@ -100,6 +119,9 @@ const VideoRecordingPage = () => {
             </Box>
             <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
                 {cameraStatus === CAMERA_RECORDING_STARTED ? <VideoCameraComponent enabled={true} /> : <VideoCameraComponent enabled={false} />}
+            </Box>
+            <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
+                <UploadVideoFunc />
             </Box>
             <Box component="section" sx={{ px: 2, display: 'flex', padding: 2 }}>
                 <GoToHomePage />

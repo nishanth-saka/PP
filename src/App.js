@@ -13,6 +13,7 @@ import { connected, disconnected } from './feature/network/networkSlice';
 import { setPosition } from './feature/location/locationSlice';
 import { getLocationCoords } from './helpers';
 import LandingPage from './containers/Landing/LandingPage';
+import LoggedInPage from './containers/Auth/Authenticated/LoggedIn';
 import VideoRecordingPage from './containers/Recording/VideoRecording/VideoRecordingPage';
 import AudioRecordingPage from './containers/Recording/AudioRecording/AudioRecordingPage';
 import GoogleAuthConsentPage from './containers/Auth/GoogleAuth/GoogleAuthPage';
@@ -22,12 +23,13 @@ import {
   ROUTE_VIDEO_PAGE,
   ROUTE_AUDIO_PAGE,
   ROUTE_ERROR_PAGE,
-  ROUTE_GOOGLE_AUTH_PAGE
+  ROUTE_GOOGLE_AUTH_PAGE,
+  ROUTE_GOOGLE_AUTH_REDIRECT
 } from './constants';
 
 function App() {
-  const dispatch = useDispatch();
- 
+  const dispatch = useDispatch();  
+  
   const isOnline = useNavigatorOnline();
   const isConnected = useSelector((state) => state.network.networkStatus);
 
@@ -57,6 +59,7 @@ function App() {
       <Router>
         <Routes>
           <Route path={ROUTE_LANDING_PAGE} element={<LandingPage />} />
+          <Route path={ROUTE_GOOGLE_AUTH_REDIRECT} element={<LoggedInPage />} />
           <Route path={ROUTE_VIDEO_PAGE} element={<VideoRecordingPage />} />
           <Route path={ROUTE_AUDIO_PAGE} element={<AudioRecordingPage />} />
           <Route path={ROUTE_GOOGLE_AUTH_PAGE} element={<GoogleAuthConsentPage />} />
